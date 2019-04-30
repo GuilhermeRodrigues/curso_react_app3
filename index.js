@@ -5,8 +5,7 @@ import {
     StyleSheet,
     Text,
     View,
-    Button,
-    Image
+    Button
 } from 'react-native';
 
 import Topo from './src/components/topo';
@@ -14,99 +13,95 @@ import Icone from './src/components/icone';
 
 class app3 extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
-        this.state = { escolhaUsuario: '', escolhaComputador : '', resultado : '' }
+        this.state = { escolhaUsuario: '', escolhaComputador: '', resultado: '' };
     }
 
-    jokenpo(escUsuario){
-
+    jokenpo(escolhaUsuario) {
         //gera número aleatório (0, 1, 2)
-        var numAleatorio = Math.floor(Math.random() * 3);
+        const numAleatorio = Math.floor(Math.random() * 3);
 
-        var escComputador = '';
+        let escolhaComputador = '';
 
-        switch(numAleatorio){
-            case 0: escComputador = 'pedra'; break;
-            case 1: escComputador = 'papel'; break;
-            case 2: escComputador = 'tesoura'; break;
+        switch (numAleatorio) {
+            case 0: escolhaComputador = 'pedra'; break;
+            case 1: escolhaComputador = 'papel'; break;
+            case 2: escolhaComputador = 'tesoura'; break;
+            default: escolhaComputador = '';
         }
 
-        var result = '';
+        let resultado = '';
 
-        if (escComputador == 'pedra'){
-            if (escUsuario == 'pedra'){
-                result = 'Empate';
+        if (escolhaComputador === 'pedra') {
+            if (escolhaUsuario === 'pedra') {
+                resultado = 'Empate';
             }
 
-            if (escUsuario == 'papel'){
-                result = 'Você ganhou';
+            if (escolhaUsuario === 'papel') {
+                resultado = 'Você ganhou';
             }
 
-            if (escUsuario == 'tesoura'){
-                result = 'Você perdeu';
-            }
-        }
-
-        if (escComputador == 'papel'){
-            if (escUsuario == 'papel'){
-                result = 'Empate';
-            }
-
-            if (escUsuario == 'tesoura'){
-                result = 'Você ganhou';
-            }
-
-            if (escUsuario == 'pedra'){
-                result = 'Você perdeu';
+            if (escolhaUsuario === 'tesoura') {
+                resultado = 'Você perdeu';
             }
         }
 
-        if (escComputador == 'tesoura'){
-            if (escUsuario == 'tesoura'){
-                result = 'Empate';
+        if (escolhaComputador === 'papel') {
+            if (escolhaUsuario === 'papel') {
+                resultado = 'Empate';
             }
 
-            if (escUsuario == 'pedra'){
-                result = 'Você ganhou';
+            if (escolhaUsuario === 'tesoura') {
+                resultado = 'Você ganhou';
             }
 
-            if (escUsuario == 'papel'){
-                result = 'Você perdeu';
+            if (escolhaUsuario === 'pedra') {
+                resultado = 'Você perdeu';
             }
         }
 
-        this.setState({ escolhaUsuario : escUsuario,
-                        escolhaComputador : escComputador,
-                        resultado : result  
-                    });
-        
+        if (escolhaComputador === 'tesoura') {
+            if (escolhaUsuario === 'tesoura') { 
+                resultado = 'Empate';
+            }
+
+            if (escolhaUsuario === 'pedra') {
+                resultado = 'Você ganhou';
+            }
+
+            if (escolhaUsuario === 'papel') { 
+                resultado = 'Você perdeu';
+            }
+        }
+
+        this.setState({ escolhaUsuario, escolhaComputador, resultado }); 
     }
     
-    render(){
+    render() {
         return (
             <View>
 
-                <Topo></Topo>
+                <Topo />
 
                 <View style={styles.painelAcoes}>
                     <View style={styles.btnEscolha}>
-                        <Button title="pedra" onPress={ () => { this.jokenpo('pedra')}} />
+                        <Button title="pedra" onPress={() => { this.jokenpo('pedra'); }} />
                     </View>
                     <View style={styles.btnEscolha}>
-                        <Button title="papel" onPress={ () => { this.jokenpo('papel')}} />
+                        <Button title="papel" onPress={() => { this.jokenpo('papel'); }} />
                     </View>
                     <View style={styles.btnEscolha}>
-                        <Button title="tesoura" onPress={ () => { this.jokenpo('tesoura')}} />
+                        <Button title="tesoura" onPress={() => { this.jokenpo('tesoura'); }} />
                     </View>
                 </View>
 
                 <View style={styles.palco}>
                     <Text style={styles.txtResultado}>{this.state.resultado}</Text>
 
-                    <Icone escolha={this.state.escolhaComputador} jogador='Computador'></Icone>
-                    <Icone escolha={this.state.escolhaUsuario} jogador='Você'></Icone>
+                    <Icone escolha={this.state.escolhaComputador} jogador='Computador' />
+                    <Icone escolha={this.state.escolhaUsuario} jogador='Você' />
           
                 </View>              
                 
@@ -138,3 +133,4 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('app3', () => app3);
+

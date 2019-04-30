@@ -38,11 +38,11 @@ class app3 extends Component {
             }
 
             if (escUsuario == 'papel'){
-                result = 'Usuário ganhou';
+                result = 'Você ganhou';
             }
 
             if (escUsuario == 'tesoura'){
-                result = 'Computador ganhou';
+                result = 'Você perdeu';
             }
         }
 
@@ -52,11 +52,11 @@ class app3 extends Component {
             }
 
             if (escUsuario == 'tesoura'){
-                result = 'Usuário ganhou';
+                result = 'Você ganhou';
             }
 
             if (escUsuario == 'pedra'){
-                result = 'Computador ganhou';
+                result = 'Você perdeu';
             }
         }
 
@@ -66,11 +66,11 @@ class app3 extends Component {
             }
 
             if (escUsuario == 'pedra'){
-                result = 'Usuário ganhou';
+                result = 'Você ganhou';
             }
 
             if (escUsuario == 'papel'){
-                result = 'Computador ganhou';
+                result = 'Você perdeu';
             }
         }
 
@@ -99,11 +99,13 @@ class app3 extends Component {
                     </View>
                 </View>
 
-                <View></View>
+                <View style={styles.palco}>
+                    <Text style={styles.txtResultado}>{this.state.resultado}</Text>
 
-                <Text>Escolha do computador: {this.state.escolhaComputador}</Text>
-                <Text>Escolha do usuário: {this.state.escolhaUsuario}</Text>
-                <Text>Resultado: {this.state.resultado}</Text>
+                    <Icone escolha={this.state.escolhaComputador} jogador='Computador'></Icone>
+                    <Icone escolha={this.state.escolhaUsuario} jogador='Você'></Icone>
+          
+                </View>              
                 
             </View>
         );
@@ -120,6 +122,44 @@ class Topo extends Component{
     }
 }
 
+class Icone extends Component{
+    render(){
+        //this.props.escolha
+        //this.props.jogador
+        if (this.props.escolha == 'pedra'){
+
+            return (
+                <View style={styles.icone}>
+                    <Text style={styles.txtJogador}>{this.props.jogador}</Text>
+                    <Image source={require('./imgs/pedra.png')} />
+                </View>
+            );
+
+        } else if (this.props.escolha == 'papel'){
+
+            return (
+                <View style={styles.icone}>
+                    <Text style={styles.txtJogador}>{this.props.jogador}</Text>
+                    <Image source={require('./imgs/papel.png')} />
+                </View>
+            );
+
+        } else if (this.props.escolha == 'tesoura'){
+
+            return (
+                <View style={styles.icone}>
+                    <Text style={styles.txtJogador}>{this.props.jogador}</Text>
+                    <Image source={require('./imgs/tesoura.png')} />
+                </View>
+            );
+
+        } else {
+            return false;
+        }
+
+    }
+}
+
 const styles = StyleSheet.create({
     btnEscolha: {
         width: 90
@@ -128,6 +168,23 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 10
+    },
+    palco: {
+        alignItems: 'center',
+        marginTop: 10
+    },
+    txtResultado: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: 'red',
+        height: 60
+    },
+    icone: {
+        alignItems: 'center',
+        marginBottom: 20
+    },
+    txtJogador: {
+        fontSize: 18
     }
 
 });

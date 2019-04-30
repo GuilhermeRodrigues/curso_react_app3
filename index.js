@@ -86,15 +86,25 @@ class app3 extends Component {
             <View>
 
                 <Topo></Topo>
-                <View></View>
+
+                <View style={styles.painelAcoes}>
+                    <View style={styles.btnEscolha}>
+                        <Button title="pedra" onPress={ () => { this.jokenpo('pedra')}} />
+                    </View>
+                    <View style={styles.btnEscolha}>
+                        <Button title="papel" onPress={ () => { this.jokenpo('papel')}} />
+                    </View>
+                    <View style={styles.btnEscolha}>
+                        <Button title="tesoura" onPress={ () => { this.jokenpo('tesoura')}} />
+                    </View>
+                </View>
+
                 <View></View>
 
                 <Text>Escolha do computador: {this.state.escolhaComputador}</Text>
                 <Text>Escolha do usuário: {this.state.escolhaUsuario}</Text>
                 <Text>Resultado: {this.state.resultado}</Text>
-                <Button title="pedra" onPress={ () => { this.jokenpo('pedra')}} />
-                <Button title="papel" onPress={ () => { this.jokenpo('papel')}} />
-                <Button title="tesoura" onPress={ () => { this.jokenpo('tesoura')}} />
+                
             </View>
         );
     }
@@ -109,5 +119,17 @@ class Topo extends Component{
         );
     }
 }
+
+const styles = StyleSheet.create({
+    btnEscolha: {
+        width: 90
+    },
+    painelAcoes: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10
+    }
+
+});
 
 AppRegistry.registerComponent('app3', () => app3);
